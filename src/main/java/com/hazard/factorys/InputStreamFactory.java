@@ -64,18 +64,20 @@ public class InputStreamFactory {
         return inputStream;
     }
 
-    private ArrayList<String> getCredentials() {
+    public ArrayList<String> getCredentials() {
         Scanner s = null;
+        ArrayList<String> credentials = new ArrayList<String>();
         try {
             s = new Scanner(new File("credentials"));
         } catch (FileNotFoundException e) {
             LOGGER.log(Level.SEVERE, "Check if credentials file is present", e);
         }
-        ArrayList<String> credentials = new ArrayList<String>();
-        while (s.hasNext()){
-            credentials.add(s.next());
+        if (s != null) {
+            while (s.hasNext()){
+                credentials.add(s.next());
+            }
+            s.close();
         }
-        s.close();
         return credentials;
     }
 }
