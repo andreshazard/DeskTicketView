@@ -1,12 +1,16 @@
-import com.hazard.desk_ticket.Entry
 import com.hazard.factorys.TicketFactory
 import org.springframework.beans.factory.annotation.Autowired
 import spock.lang.Shared
+import spock.lang.Subject
+import spock.lang.Title
+
 /**
  *
  * Created by andreshazard on 4/9/16.
  */
 
+@Title("Unit testing for the ticket factory considering all ticket ids")
+@Subject(TicketFactory)
 class TicketFactorySpec extends spock.lang.Specification {
 
     @Autowired
@@ -19,21 +23,24 @@ class TicketFactorySpec extends spock.lang.Specification {
 
     def "Test ticket factory with a valid ID"() {
 
-        when: "a valid ticket number is provided"
-        ticketFactory.setTicketId("16828");
+        given:"a valid ticket number"
+        def ticket = "16828"
 
+        when: "we pass the ticket number to the factory"
+        ticketFactory.setTicketId(ticket);
 
         then: "a non null ticket object is returned"
         ticketFactory.getDeskTicket()
 
-        and: "return type is a Ticket object"
-        ticketFactory.getDeskTicket().getClass() == Entry.class
     }
 
     def "Test ticket factory with an invalid ID"() {
 
-        when: "an invalid number is provided"
-        ticketFactory.setTicketId("1");
+        given:"an invalid ticket number"
+        def ticket = "1"
+
+        when: "we pass the invalid ticket to the factory"
+        ticketFactory.setTicketId(ticket);
 
         then: "a null ticket id should be return"
         !ticketFactory.getDeskTicket().getId()
@@ -42,11 +49,18 @@ class TicketFactorySpec extends spock.lang.Specification {
 
     def "Test ticket factory with an empty ID"() {
 
-        when: "an empty ticket id is provided"
-        ticketFactory.setTicketId();
+        given:"an empty ticket number"
+        def ticket = null
+
+        when: "we pass it to the factory"
+        ticketFactory.setTicketId(ticket);
 
         then: "a null ticket id should be return"
         !ticketFactory.getDeskTicket().getId()
+    }
+
+    def cleanup() {
+        ticketFactory.setTicketId(null)
     }
 
 }
