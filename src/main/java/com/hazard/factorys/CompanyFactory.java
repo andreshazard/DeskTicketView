@@ -15,16 +15,17 @@ public class CompanyFactory {
     private String company;
 
     public CompanyFactory() {
+        this.company = "";
     }
 
     public void setCompany(String company) {
         this.company = company;
     }
 
-    public final DeskTicket getDeskTickets() throws IOException {
+    public DeskTicket getDeskTickets() throws IOException {
 
         //Getting the first word of the company name
-        String arr[] = this.company.split(" ", 2);
+        String[] arr= this.company.split(" ", 2);
         String apiUrl = "https://servicerocket.desk.com/api/v2/cases/search?q=company:%22" + arr[0] +
                 "%22%20group:Learndot%20status:open,pending,new";
         InputStreamFactory inputStreamFactory = new InputStreamFactory(apiUrl);

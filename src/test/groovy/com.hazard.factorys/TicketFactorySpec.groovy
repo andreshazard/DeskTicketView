@@ -1,9 +1,9 @@
+import com.hazard.factorys.InputStreamFactory
 import com.hazard.factorys.TicketFactory
 import org.springframework.beans.factory.annotation.Autowired
 import spock.lang.Shared
 import spock.lang.Subject
 import spock.lang.Title
-
 /**
  *
  * Created by andreshazard on 4/9/16.
@@ -57,6 +57,23 @@ class TicketFactorySpec extends spock.lang.Specification {
 
         then: "a null ticket id should be return"
         !ticketFactory.getDeskTicket().getId()
+    }
+
+    def "inputStream object throws error when no credentials file is present"() {
+
+        given: "readFile method on inputStream factory throws and error"
+        InputStreamFactory inputStreamFactoryStub = Stub(InputStreamFactory)
+        inputStreamFactoryStub.readFile(_) >> {throw new FileNotFoundException()}
+
+        and: "ticket factory uses that method"
+        TicketFactory ticketFactory1 = new
+                TicketFactory(inputStreamFactory: inputStreamFactoryStub);
+
+        when: "ticketFactory tries to get a desk ticket object"
+        ticketFactory1.getDeskTicket()
+
+        then: "ticketFactory can handle the error"
+        notThrown Exception.class
     }
 
     def cleanup() {

@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired
 import spock.lang.Shared
 import spock.lang.Subject
 import spock.lang.Title
-
 /**
  * Created by andreshazard on 4/9/16.
  */

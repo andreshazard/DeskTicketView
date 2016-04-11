@@ -21,13 +21,15 @@ import java.util.List;
 public class CompanyController {
 
     @Autowired
-    CompanyFactory companyFactory;
+    private CompanyFactory companyFactory;
+
+    private DeskTicket deskTicketsObject;
 
     @RequestMapping(value = "/view_customer", method = {RequestMethod.POST, RequestMethod.GET})
     public String viewCustomerRequest(@RequestParam String company, ModelMap model) throws IOException {
         //Get all tickets from customer on DeskTicket object
         companyFactory.setCompany(company);
-        DeskTicket deskTicketsObject = companyFactory.getDeskTickets();
+        deskTicketsObject = companyFactory.getDeskTickets();
         int numberOfTickets = deskTicketsObject.getTotalEntries();
         List<Entry> deskTickets = deskTicketsObject.getEmbedded().getEntries();
         Collections.reverse(deskTickets); //to get tickets on order

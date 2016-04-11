@@ -57,9 +57,9 @@ public class TicketController {
 
             return "view_ticket";
         } catch (IOException e) {
-            return "home_error";
+            return "home_error" + e;
         } catch (NullPointerException e) {
-            return "home_error";
+            return "home_error" + e;
         }
 
 

@@ -16,12 +16,14 @@ import java.util.List;
 public class TicketFactory {
 
     private String ticketId;
+    private InputStreamFactory inputStreamFactory;
 
     public TicketFactory(String ticketId) {
         this.ticketId = ticketId;
     }
 
     public TicketFactory() {
+        this.ticketId = "";
     }
 
     public void setTicketId(String ticketId) {
@@ -31,7 +33,7 @@ public class TicketFactory {
     public final Entry getDeskTicket() throws IOException {
 
         String apiUrl = "https://servicerocket.desk.com/api/v2/cases/search?q=caseid:" + this.ticketId;
-        InputStreamFactory inputStreamFactory = new InputStreamFactory(apiUrl);
+        inputStreamFactory = new InputStreamFactory(apiUrl);
         InputStream inputStream = inputStreamFactory.getInputStream();
         ObjectMapper mapper = new ObjectMapper();
         DeskTicket deskTicket;
