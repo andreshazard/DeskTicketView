@@ -33,12 +33,6 @@ public class TicketFactoryTest {
         assertTrue(ticketFactory.getDeskTicket().getId() == null);
     }
 
-    @Test
-    public void testGetDeskTicket_NullTicketId() throws Exception {
-        ticketFactory.getDeskTicket();
-        assertTrue(ticketFactory.getDeskTicket().getId() == null);
-    }
-
     @Test(timeout = 30000)
     public void testGetDeskTicket_Performacen() throws Exception {
         ticketFactory.setTicketId("16828");
