@@ -10,18 +10,20 @@
             <div style="white-space: nowrap">
                 <p style="width: 10%"> Created ${(((deskTicket.getCreatedAt())?substring(0, 10)))!}</p>
             </div>
-            <p>Priority : ${(deskTicket.getPriority())!}</p>
-            <p>Status : ${(deskTicket.getStatus())!}</p>
-            <p>SubStatus : <b>${(deskTicket.getCustomFields().getStatus())!}</b></p>
-            <p>Jira ID : ${(deskTicket.getCustomFields().getJiraId())!"No Jira Ticket Created"}</p>
-            <p>Customer : ${(customerInfo.getFirstName())!} ${(customerInfo.getLastName())!}</p>
-            <p>Customer's Company : <a href="/view_customer?company=${(customerInfo.getCompanyName())!}">
-                ${(customerInfo.getCompanyName())!}</a></p>
-            <p>Engineer Assigned = ${(engineerAssigned.getName())!}</p>
-            <p>Engineer's Email = ${(engineerAssigned.getEmail())!}<p/>
-            <hr>
-            <h3>Initial Message</h3>
-            <p>${(message.getBody())!"No initail message on this ticket"}</p>
+            <div>
+                <p>Priority : ${(deskTicket.getPriority())!}</p>
+                <p>Status : ${(deskTicket.getStatus())!}</p>
+                <p>SubStatus : <b>${(deskTicket.getCustomFields().getStatus())!}</b></p>
+                <p>Jira ID : ${(deskTicket.getCustomFields().getJiraId())!"No Jira Ticket Created"}</p>
+                <p>Customer : ${(customerInfo.getFirstName())!} ${(customerInfo.getLastName())!}</p>
+                <p>Customer's Company : <a href="/view_customer?company=${(customerInfo.getCompanyName())!}">
+                    ${(customerInfo.getCompanyName())!}</a></p>
+                <p>Engineer Assigned = ${(engineerAssigned.getName())!}</p>
+                <p>Engineer's Email = ${(engineerAssigned.getEmail())!}<p/>
+                <hr>
+                <h3>Initial Message</h3>
+                <pre>${(message.getBody())!"No initial message on this ticket"}</pre>
+            </div>
             <div style="overflow: auto; width: 300px height: 200px";>
                 <#list replies>
                     <hr>
