@@ -8,8 +8,8 @@
     <div class="navbar-collapse">
         <ul class="nav navbar-nav">
             <li><a href="/ticket">Ticket</a></li>
-            <li class="active"><a href="/customer">Customer</a></li>
-            <li><a href="/todays">Today'sTickets</a></li>
+            <li><a href="/customer">Customer</a></li>
+            <li class="active"><a href="/todaystickets">Today'sTickets</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
             <li><a href="/logout">Logout</a></li>

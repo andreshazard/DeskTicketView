@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 /**
- * Created by andreshazard on 3/20/16.
+ * Factory class to get ticets from a company
  */
 @Service
 public class CompanyFactory {

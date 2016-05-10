@@ -9,6 +9,7 @@
         <ul class="nav navbar-nav">
             <li class="active"><a href="/ticket">Ticket</a></li>
             <li><a href="/customer">Customer</a></li>
+            <li><a href="/todays">Today'sTickets</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
             <li><a href="/logout">Logout</a></li>
