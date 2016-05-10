@@ -1,8 +1,7 @@
 package com.hazard.todaysTicketView;
 
+import com.hazard.desk_ticket.DeskTicket;
 import com.hazard.factorys.TodaysTicketFactory;
-import com.hazard.todaysTickets.Entry;
-import com.hazard.todaysTickets.TodaysTickets;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,8 +20,8 @@ public class TodaysTicketsController {
     @RequestMapping(value = "/todays", method = RequestMethod.GET)
     public String showTodaysTickets(ModelMap model) throws IOException {
         TodaysTicketFactory todaysTicketFactory = new TodaysTicketFactory();
-        TodaysTickets todaysTickets = todaysTicketFactory.getTodaysTickets();
-        List<Entry> entry = todaysTickets.getEmbedded().getEntries();
+        DeskTicket todaysTickets = todaysTicketFactory.getTodaysTickets();
+        List<com.hazard.desk_ticket.Entry> entry = todaysTickets.getEmbedded().getEntries();
         model.clear();
         model.put("todaysTickets", entry);
         return "todays";

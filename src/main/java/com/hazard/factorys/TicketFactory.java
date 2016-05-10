@@ -47,6 +47,17 @@ public class TicketFactory {
         }
         return returningTicket;
 
+    }
+
+    public final DeskTicket getTodaysTickets() throws IOException {
+        String apiUrl = "https://servicerocket.desk.com/api/v2/cases/search?q=created:today%20group:Learndot%20status:open,pending,new";
+        inputStreamFactory = new InputStreamFactory(apiUrl);
+        InputStream inputStream = inputStreamFactory.getInputStream();
+        ObjectMapper mapper = new ObjectMapper();
+        DeskTicket deskTicket;
+        deskTicket = mapper.readValue(inputStream, DeskTicket.class);
+
+        return deskTicket;
 
     }
 }

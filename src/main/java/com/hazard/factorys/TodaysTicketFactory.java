@@ -1,29 +1,22 @@
 package com.hazard.factorys;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.hazard.todaysTickets.TodaysTickets;
+import com.hazard.desk_ticket.DeskTicket;
 
-import javax.persistence.criteria.CriteriaBuilder;
 import java.io.IOException;
-import java.io.InputStream;
 
 /**
  * Factory class to get today's tickets
  */
 public class TodaysTicketFactory {
 
-    private String apiCall;
-    private InputStreamFactory inputStreamFactory;
+    private TicketFactory ticketFactory;
 
     public TodaysTicketFactory() {
-        this.apiCall = "https://servicerocket.desk.com/api/v2/cases/search?q=created:today%20group:Learndot%20status:open,pending,new";
-        inputStreamFactory = new InputStreamFactory(apiCall);
+        ticketFactory = new TicketFactory();
     }
 
-    public TodaysTickets getTodaysTickets() throws IOException {
-        InputStream inputStream = inputStreamFactory.getInputStream();
-        ObjectMapper mapper = new ObjectMapper();
-        TodaysTickets todaysTickets;
-        todaysTickets = mapper.readValue(inputStream, TodaysTickets.class);
+    public DeskTicket getTodaysTickets() throws IOException {
+        DeskTicket todaysTickets;
+        todaysTickets = ticketFactory.getTodaysTickets();
         return todaysTickets;
 
 
