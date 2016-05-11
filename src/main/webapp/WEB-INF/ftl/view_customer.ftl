@@ -1,5 +1,5 @@
 <#include "common/header.ftl">
-<#include "common/navegation-ticket.ftl">
+<#include "common/navegation-customer.ftl">
 
 
 <#list deskTickets>

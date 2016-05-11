@@ -14,15 +14,26 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Autowired
     public void configureGlobalSecurity(AuthenticationManagerBuilder auth)
             throws Exception {
-        auth.inMemoryAuthentication().withUser("servicerocket").password("delightthecustomer")
-                .roles("USER");
+        auth
+                .inMemoryAuthentication()
+                    .withUser("servicerocket")
+                    .password("delightthecustomer")
+                    .roles("USER");
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests().antMatchers("/login").permitAll()
-                .antMatchers("/*").access("hasRole('USER')").and()
-                .formLogin();
+        http
+                .authorizeRequests()
+                    .antMatchers("/*").access("hasRole('USER')")
+                    .and()
+                .formLogin()
+                    .loginPage("/login")
+                    .permitAll()
+                    .and()
+                .logout()
+                    .logoutSuccessUrl("/login?logout")
+                    .permitAll();
         http.csrf().disable();
     }
 

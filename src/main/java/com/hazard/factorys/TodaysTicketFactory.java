@@ -24,13 +24,13 @@ public class TodaysTicketFactory {
     public DeskTicket getTodaysTickets() throws IOException {
         DeskTicket todaysTickets;
         todaysTickets = ticketFactory.getTodaysTickets();
-        getCompayOfTickets(todaysTickets);
+        getCompanyOfTickets(todaysTickets);
         getEngineerAssignOfTickets(todaysTickets);
 
         return todaysTickets;
     }
 
-    private void getCompayOfTickets(DeskTicket todaysTickets) {
+    private void getCompanyOfTickets(DeskTicket todaysTickets) {
         for (Entry ticket : todaysTickets.getEmbedded().getEntries()) {
             try {
                 customerInfoFactory = new CustomerInfoFactory(ticket);
