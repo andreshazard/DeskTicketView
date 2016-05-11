@@ -102,6 +102,9 @@ public class Entry implements Comparable {
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
+    private String company;
+    private String engineerAssign;
+
     /**
      * 
      * @return
@@ -677,4 +680,19 @@ public class Entry implements Comparable {
         return this.getCreatedAt().compareTo(otherTicket.getCreatedAt());
     }
 
+    public String getCompany() {
+        return company;
+    }
+
+    public void setCompany(String company) {
+        this.company = company;
+    }
+
+    public String getEngineerAssign() {
+        return engineerAssign;
+    }
+
+    public void setEngineerAssign(String engineerAssign) {
+        this.engineerAssign = engineerAssign;
+    }
 }
