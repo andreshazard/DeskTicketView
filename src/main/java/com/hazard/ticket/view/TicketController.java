@@ -8,6 +8,7 @@ import com.hazard.message.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -62,12 +63,12 @@ public class TicketController {
             return "home_error";
         }
 
+    }
 
+    @RequestMapping(value = "/view_ticket/{id}", method = RequestMethod.GET)
+    public String viewTicketRequestId(@PathVariable String id, ModelMap model) throws IOException {
+        String redirect = "redirect:/view_ticket?id=" + id;
+        return redirect;
     }
 
 }
-
-
-
-
-
