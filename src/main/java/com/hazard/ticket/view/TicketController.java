@@ -15,12 +15,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
- * Created by andreshazard on 3/19/16.
+ * Controller for view ticket
  */
 @Controller
 public class TicketController {
+
+    private static final Logger LOGGER = Logger.getLogger(InputStreamFactory.class.getName());
 
     @Autowired
     TicketFactory ticketFactory;
@@ -58,17 +62,18 @@ public class TicketController {
 
             return "view_ticket";
         } catch (IOException e) {
+            LOGGER.log(Level.SEVERE, "Check if credentials file is present" + e);
             return "home_error";
         } catch (NullPointerException e) {
+            LOGGER.log(Level.SEVERE, "Check if credentials file is present" + e);
             return "home_error";
         }
 
     }
 
     @RequestMapping(value = "/view_ticket/{id}", method = RequestMethod.GET)
-    public String viewTicketRequestId(@PathVariable String id, ModelMap model) throws IOException {
-        String redirect = "redirect:/view_ticket?id=" + id;
-        return redirect;
+    public String viewTicketRequestId(@PathVariable String id) throws IOException {
+        return "redirect:/view_ticket?id=" + id;
     }
 
 }

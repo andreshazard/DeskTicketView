@@ -40,10 +40,6 @@ public class InputStreamFactory {
         //constructor empty for @service
     }
 
-    public void setLinkForAPI(String linkForAPI) {
-        this.linkForAPI = linkForAPI;
-    }
-
     public final InputStream getInputStream() throws IOException {
         String apiUrl;
         if (ticket != null) {
@@ -58,10 +54,9 @@ public class InputStreamFactory {
         String username = credentials.get(0);
         String password = credentials.get(1);
         String userpass = username + ":" + password;
-        String basicAuth = "Basic " + new String(new Base64().encode(userpass.getBytes()));
+        String basicAuth = "Basic " + new Base64().encode(userpass.getBytes());
         urlConnection.setRequestProperty ("Authorization", basicAuth);
-        InputStream inputStream = urlConnection.getInputStream();
-        return inputStream;
+        return urlConnection.getInputStream();
     }
 
     private ArrayList<String> getCredentials() {
@@ -81,7 +76,7 @@ public class InputStreamFactory {
         try {
             s = new Scanner(new File(file));
         } catch (FileNotFoundException e) {
-            LOGGER.log(Level.SEVERE, "Check if credentials file is present");
+            LOGGER.log(Level.SEVERE, "Check if credentials file is present" + e);
         }
         return s;
     }
