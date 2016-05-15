@@ -21,9 +21,20 @@ public class TodaysTicketFactory {
         ticketFactory = new TicketFactory();
     }
 
-    public DeskTicket getTodaysTickets() throws IOException {
+    public DeskTicket getTodaysNewTickets() throws IOException {
         DeskTicket todaysTickets;
-        todaysTickets = ticketFactory.getTodaysTickets();
+        todaysTickets = ticketFactory.getTodaysTickets("https://servicerocket.desk.com/api/v2/cases/search?q=" +
+                "created:today%20group:Learndot%20status:open,pending,new");
+        getCompanyOfTickets(todaysTickets);
+        getEngineerAssignOfTickets(todaysTickets);
+
+        return todaysTickets;
+    }
+
+    public DeskTicket getTodaysCloseTickets() throws IOException {
+        DeskTicket todaysTickets;
+        todaysTickets = ticketFactory.getTodaysTickets("https://servicerocket.desk.com/api/v2/cases/search?q=" +
+                "group:Learndot%20status:resolved%20updated:today%20labels:%22%21Spam%22");
         getCompanyOfTickets(todaysTickets);
         getEngineerAssignOfTickets(todaysTickets);
 

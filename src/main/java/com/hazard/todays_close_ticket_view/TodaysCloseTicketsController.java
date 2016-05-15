@@ -1,6 +1,7 @@
-package com.hazard.todaysTicketView;
+package com.hazard.todays_close_ticket_view;
 
 import com.hazard.desk_ticket.DeskTicket;
+import com.hazard.desk_ticket.Entry;
 import com.hazard.factorys.TodaysTicketFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -11,19 +12,19 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * Controller of the view today's tickets page
+ * Controller for close tickets of af the day
  */
 
 @Controller
-public class TodaysTicketsController {
+public class TodaysCloseTicketsController {
 
-    @RequestMapping(value = "/todays", method = RequestMethod.GET)
+    @RequestMapping(value = "/todaysclosetickets", method = RequestMethod.GET)
     public String showTodaysTickets(ModelMap model) throws IOException {
         TodaysTicketFactory todaysTicketFactory = new TodaysTicketFactory();
-        DeskTicket todaysTickets = todaysTicketFactory.getTodaysTickets();
-        List<com.hazard.desk_ticket.Entry> entry = todaysTickets.getEmbedded().getEntries();
+        DeskTicket todaysTickets = todaysTicketFactory.getTodaysCloseTickets();
+        List<Entry> entry = todaysTickets.getEmbedded().getEntries();
         model.clear();
-        model.put("todaysTickets", entry);
-        return "todays";
+        model.put("todaysCloseTickets", entry);
+        return "todays_close";
     }
 }

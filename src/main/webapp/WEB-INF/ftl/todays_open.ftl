@@ -2,9 +2,9 @@
 <#include "common/navegation-today.ftl">
 
 <div class="container">
-    <#list todaysTickets>
+    <#list todaysNewTickets>
     <table class="table table-striped">
-        <caption>Open tickets of the last 24 hours</caption>
+        <caption>New tickets of the last 24 hours</caption>
         <thead>
         <tr>
             <th>View</th>
