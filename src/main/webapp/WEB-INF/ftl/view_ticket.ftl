@@ -8,7 +8,7 @@
         <div class="panel-body">
             <h3>Ticket Details</h3>
             <div style="white-space: nowrap">
-                <p style="width: 10%"> Created ${(((deskTicket.getCreatedAt())?substring(0, 10)))!}</p>
+                <p style="width: 10%"> Created ${(deskTicket.getCreatedAt())!}</p>
             </div>
             <div>
                 <p>Priority : ${(deskTicket.getPriority())!}</p>
@@ -32,7 +32,7 @@
                         <div style="color: #989898;">
                             <#if reply.getBody() != "" && reply.getBody()??>
                             <hr>
-                            <p>Sent At ${(reply.getCreatedAt()?substring(0, 10))!}</p>
+                            <p>Sent At ${(reply.getCreatedAt())!}</p>
                             <p>From ${(reply.getFrom())!}</p>
                             </#if>
                         </div>

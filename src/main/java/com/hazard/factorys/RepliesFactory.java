@@ -3,6 +3,7 @@ package com.hazard.factorys;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hazard.desk_ticket.Entry;
 import com.hazard.replies.RepliesFromTicket;
+import com.hazard.formatter.DateFormatter;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -23,7 +24,14 @@ public class RepliesFactory extends AbstractFactory {
         ObjectMapper mapper = new ObjectMapper();
         RepliesFromTicket repliesFromTicket;
         repliesFromTicket = mapper.readValue(inputStream, RepliesFromTicket.class);
-        return repliesFromTicket.getEmbedded().getEntries();
+        List<com.hazard.replies.Entry> replies = repliesFromTicket.getEmbedded().getEntries();
+        for (com.hazard.replies.Entry reply: replies) {
+            String convertedDate = DateFormatter.convertDate(reply.getCreatedAt());
+            reply.setCreatedAt(convertedDate);
+        }
+        return replies;
 
     }
-}
+
+    }
+

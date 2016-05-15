@@ -3,6 +3,7 @@ package com.hazard.factorys;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hazard.desk_ticket.DeskTicket;
 import com.hazard.desk_ticket.Entry;
+import com.hazard.formatter.DateFormatter;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -43,6 +44,8 @@ public class TicketFactory {
         Entry returningTicket = new Entry();
         for (Entry ticket : info) {
             returningTicket = ticket;
+            String convertedDate = DateFormatter.convertDate(returningTicket.getCreatedAt());
+            returningTicket.setCreatedAt(convertedDate);
             break;
         }
         return returningTicket;
